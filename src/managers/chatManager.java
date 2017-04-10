@@ -17,23 +17,25 @@ public class chatManager {
     private String sep = "|";
     private File File = new File(ruta);
 
-    public chatManager(UserManager um) {
+    public chatManager(UserManager um) throws Exception {
         this.um = um;
         this.chats = new ArrayList<Chat>();
+        load();
     }
 
-    public Chat get(int ID){
+    public ArrayList<Chat> get(int ID){
+        ArrayList a = new ArrayList<Chat>();
         for(Chat c: chats){
-            if(c.getUsr1_ID() == ID || c.getUsr2_ID() == ID) return c;
+            if(c.getUsr1_ID() == ID || c.getUsr2_ID() == ID) a.add(c);
         }
-        return null;
+        return a;
     }
     
-    public boolean createChat(int ID1,int ID2){
+    public void createChat(int ID1,int ID2) throws IOException{
         Chat c = new Chat(0, ID1, ID1);
         chats.add(c);
         c.setID(chats.indexOf(c));
-        return true;
+        save();
     }
     
     public void save() throws FileNotFoundException, IOException{

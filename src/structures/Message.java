@@ -16,6 +16,16 @@ public class Message {
         this.date = new Date();
     }
 
+    public Message(int ID, int usr_ID, int chat_ID, String message, Date date) {
+        this.ID = ID;
+        this.usr_ID = usr_ID;
+        this.chat_ID = chat_ID;
+        this.message = message;
+        this.date = date;
+    }
+    
+    
+
     public int getID() {
         return ID;
     }
